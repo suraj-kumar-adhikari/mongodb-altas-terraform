@@ -28,9 +28,9 @@ In oder to use the terraform module, you need to have items listed below.
 
 Note: Roadmap will be updated as we progress through the tasks
 
-- [ ] Introduce readme 
+- [x] Introduce readme 
   - [x] Create an initial readme file explaining the details fo the module.
-- [ ] Add Pre commit hooks mentioned in the task PDF 
+- [x] Add Pre commit hooks mentioned in the task PDF 
 - [ ] Add Github actions workflow files 
   - [ ] Add a Github action workflow file which gets triggered whenever a new pull request gets created. It will run terraform validate, terraform plan and post the details of the run to the pull request as a comment.
   - [ ] Add a Github action workflow file to terraform plan and apply once the changes are merged to master.
