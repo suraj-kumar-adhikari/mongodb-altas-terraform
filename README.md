@@ -31,9 +31,9 @@ Note: Roadmap will be updated as we progress through the tasks
 - [x] Introduce readme 
   - [x] Create an initial readme file explaining the details fo the module.
 - [x] Add Pre commit hooks mentioned in the task PDF 
-- [ ] Add Github actions workflow files 
-  - [ ] Add a Github action workflow file which gets triggered whenever a new pull request gets created. It will run terraform validate, terraform plan and post the details of the run to the pull request as a comment.
-  - [ ] Add a Github action workflow file to terraform plan and apply once the changes are merged to master.
+- [x] Add Github actions workflow files 
+  - [x] Add a Github action workflow file which gets triggered whenever a new pull request gets created. It will run terraform validate, terraform plan and post the details of the run to the pull request as a comment.
+  - [x] Add a Github action workflow file to terraform plan and apply once the changes are merged to master.
 - [ ] Add terraform resources from mongodbatlas provider to create mongodbatlas database
 - [ ] Add terraform resources for AWS VPC peering with the help of aws provider
 - [ ] Add terraform resources for third party integration such as datadog for alerting
