@@ -13,7 +13,6 @@ env:
 jobs:
     deploy:
         runs-on: ubuntu-22.04
-        if: github.repository != 'suraj-kumar-adhikari/mongodb-altas-terraform'
         name: "Terraform apply main pipeline"
         permissions:
             contents: read

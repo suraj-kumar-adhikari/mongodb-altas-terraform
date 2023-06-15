@@ -8,7 +8,6 @@ env:
     CONFIG_DIRECTORY: "./"
 jobs:
   pullrequest:
-    if: github.repository != 'suraj-kumar-adhikari/mongodb-altas-terraform'
     name: "Pull request pipeline"
     runs-on: ubuntu-22.04
     permissions:
