@@ -15,14 +15,14 @@ In oder to use the terraform module, you need to have items listed below.
 
 | Name | Version |
 |------|---------|
-| terraform version | \~ 1.5 |
+| terraform version | \>= 1.5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws provider version | \~ 5.3 |
-| mongodb atlas provider version | \~ 1.9 |
+| aws provider version | \~> 5.3 |
+| mongodb atlas provider version | \~> 1.10 |
 
 ## Roadmap
 
