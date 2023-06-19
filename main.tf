@@ -60,8 +60,8 @@ module "mongodb_atlas_cluster" {
   #    "sg 2": "<sg-id>"
   #  }
 
-
   #  # Third party integration with datadog
+  #  enable_datadog = "yes"
   #  datadog_api_key = ""
   #  datadog_region = ""
 }

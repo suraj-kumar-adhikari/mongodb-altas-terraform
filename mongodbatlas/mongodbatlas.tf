@@ -109,4 +109,6 @@ resource "mongodbatlas_third_party_integration" "datadog" {
   type       = "DATADOG"
   api_key    = var.datadog_api_key
   region     = var.datadog_region
+
+  count = var.enable_datadog == "yes" ? 1 : 0
 }
