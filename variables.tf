@@ -1,8 +1,8 @@
-#variable "cloud_region" {
-#  description = "Region in which Cloud Resources to be created"
-#  type        = string
-#  default     = "eu-west-2"
-#}
+variable "cloud_region" {
+  description = "Region in which Cloud Resources to be created"
+  type        = string
+  default     = "eu-west-2"
+}
 
 variable "atlas_org_id" {
   description = "MongoDB Atlas org id"
