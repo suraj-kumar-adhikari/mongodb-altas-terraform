@@ -20,4 +20,8 @@ module "mongodb_atlas_cluster" {
   mongo_database_app_password = var.mongo_database_app_password
 
   mongo_database_name = var.mongo_database_name
+
+  ip_access_list = {
+    "Personal IP": "95.91.214.30"
+  }
 }

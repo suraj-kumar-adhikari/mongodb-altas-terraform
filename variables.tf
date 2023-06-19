@@ -80,14 +80,14 @@ variable "mongo_database_app_password" {
   type        = string
 }
 
-#variable "atlas_cluster_cidr" {
-#  description = "Atlas CIDR block, must be at least a /24 and at most a /21"
-#  type        = string
-#  default     = "192.168.248.0/24"
-#}
+variable "ip_access_list" {
+  description = "Network ip access-lists for the project"
+  type        = map(any)
+  default     = {}
+}
 
-#variable "atlas_cluster_allow_inbound_from_cidr" {
-#  description = "CIDR block to allow inbound traffic to the cluster"
-#  type        = string
-#  default     = "95.91.214.30/32"
-#}
+variable "cidr_access_list" {
+  description = "Network cidr access-lists for the project"
+  type        = map(any)
+  default     = {}
+}
