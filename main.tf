@@ -1,6 +1,8 @@
 module "mongodb_atlas_cluster" {
   source = "./mongodbatlas"
 
+  atlas_cluster_name = var.atlas_cluster_name
+
   atlas_cluster_provider_name    = var.atlas_cluster_provider_name
   atlas_cluster_backing_provider = var.atlas_cluster_backing_provider
   atlas_cluster_region           = var.atlas_cluster_region
@@ -21,7 +23,27 @@ module "mongodb_atlas_cluster" {
 
   mongo_database_name = var.mongo_database_name
 
+  atlas_cluster_cidr = var.atlas_cluster_cidr
+
   ip_access_list = {
     "Personal IP" : "95.91.214.30"
   }
+
+#  cidr_access_list = {}
+
+# VPC peering example
+#  vpc_peer = {
+#    vpc_peer1 : {
+#      aws_account_id : "<account-id>"
+#      region : "eu-west-1"
+#      vpc_id : "<vpc-id>"
+#      route_table_cidr_block : "<cidr-block>"
+#    },
+#    vpc_peer2 : {
+#      aws_account_id : "<account-id>"
+#      region : "eu-central-1"
+#      vpc_id : "<vpc-id>"
+#      route_table_cidr_block : "<cidr-block>"
+#    }
+#  }
 }

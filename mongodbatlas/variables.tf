@@ -14,6 +14,11 @@ variable "atlas_project_name" {
   type        = string
 }
 
+variable "atlas_cluster_name" {
+  description = "MongoDB Atlas project name"
+  type        = string
+}
+
 variable "atlas_api_public_key" {
   description = "MongoDB Atlas public API key"
   type        = string
@@ -88,6 +93,23 @@ variable "ip_access_list" {
 
 variable "cidr_access_list" {
   description = "Network cidr access-lists for the project"
+  type        = map(any)
+  default     = {}
+}
+
+variable "atlas_cluster_cidr" {
+  description = "Atlas CIDR block, must be at least a /24 and at most a /21"
+  type        = string
+}
+
+variable "vpc_peer" {
+  description = "An object that contains all VPC peering requests from the cluster to AWS VPC"
+  type        = map(any)
+  default     = {}
+}
+
+variable "vpc_peer_sg" {
+  description = "VPC peer security group map"
   type        = map(any)
   default     = {}
 }
