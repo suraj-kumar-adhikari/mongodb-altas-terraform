@@ -263,7 +263,13 @@ module "mongodb_atlas_cluster" {
 
 ## Outputs
 
-| Name                    | Description              |
-|-------------------------|--------------------------|
-| cluster_service_address | Cluster service address  |
-| mongo_database_version  | MongoDB Database version |
+| Name                    | Description                                              |
+|-------------------------|----------------------------------------------------------|
+| cluster_service_address | Cluster service address                                  |
+| mongo_database_version  | MongoDB Database version                                 |
+| cluster_id              | MongoDB Atlas cluster ID                                 |
+| mongo_uri               | Base connection string for the cluster                   |
+| mongo_uri_updated       | Lists when the connection string was last updated        |
+| container_id            | The Network Peering Container ID                         |
+| paused                  | Flag that indicates whether the cluster is paused or not |
+| state_name              | Current state of the cluster                             |
