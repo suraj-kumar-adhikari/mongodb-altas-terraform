@@ -16,7 +16,7 @@ resource "mongodbatlas_cluster" "main" {
 }
 
 resource "mongodbatlas_project_ip_access_list" "ip_access_list" {
-  depends_on         = [mongodbatlas_cluster.main]
+  depends_on = [mongodbatlas_cluster.main]
 
   for_each = var.ip_access_list
 
@@ -26,7 +26,7 @@ resource "mongodbatlas_project_ip_access_list" "ip_access_list" {
 }
 
 resource "mongodbatlas_project_ip_access_list" "cidr_access_list" {
-  depends_on         = [mongodbatlas_cluster.main]
+  depends_on = [mongodbatlas_cluster.main]
 
   for_each = var.cidr_access_list
 
