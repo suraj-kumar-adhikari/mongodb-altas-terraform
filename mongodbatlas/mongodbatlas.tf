@@ -3,7 +3,7 @@ resource "mongodbatlas_project" "atlas_project" {
   org_id = var.atlas_org_id
 }
 
-resource "mongodbatlas_cluster" "main" {
+resource "mongodbatlas_cluster" "cluster" {
   project_id = mongodbatlas_project.atlas_project.id
   name       = var.atlas_project_name
 
@@ -16,7 +16,7 @@ resource "mongodbatlas_cluster" "main" {
 }
 
 resource "mongodbatlas_project_ip_access_list" "ip_access_list" {
-  depends_on = [mongodbatlas_cluster.main]
+  depends_on = [mongodbatlas_cluster.cluster]
 
   for_each = var.ip_access_list
 
@@ -26,7 +26,7 @@ resource "mongodbatlas_project_ip_access_list" "ip_access_list" {
 }
 
 resource "mongodbatlas_project_ip_access_list" "cidr_access_list" {
-  depends_on = [mongodbatlas_cluster.main]
+  depends_on = [mongodbatlas_cluster.cluster]
 
   for_each = var.cidr_access_list
 
@@ -36,7 +36,7 @@ resource "mongodbatlas_project_ip_access_list" "cidr_access_list" {
 }
 
 resource "mongodbatlas_database_user" "admin" {
-  depends_on         = [mongodbatlas_cluster.main]
+  depends_on         = [mongodbatlas_cluster.cluster]
   username           = var.mongo_database_admin_user
   password           = var.mongo_database_admin_password
   project_id         = mongodbatlas_project.atlas_project.id
@@ -49,7 +49,7 @@ resource "mongodbatlas_database_user" "admin" {
 }
 
 resource "mongodbatlas_database_user" "application" {
-  depends_on         = [mongodbatlas_cluster.main]
+  depends_on         = [mongodbatlas_cluster.cluster]
   username           = var.mongo_database_app_user
   password           = var.mongo_database_app_password
   project_id         = mongodbatlas_project.atlas_project.id
