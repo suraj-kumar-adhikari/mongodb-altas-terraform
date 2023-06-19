@@ -110,5 +110,16 @@ resource "mongodbatlas_third_party_integration" "datadog" {
   api_key    = var.datadog_api_key
   region     = var.datadog_region
 
-  count = var.enable_datadog == "yes" ? 1 : 0
+  count = var.enable_datadog == true ? 1 : 0
+}
+
+resource "mongodbatlas_maintenance_window" "maintenance" {
+  depends_on = [mongodbatlas_cluster.cluster]
+
+  project_id  = mongodbatlas_project.atlas_project.id
+  day_of_week = var.maintenance_window_day_of_week
+  hour_of_day = var.maintenance_window_hour_of_day
+  defer       = var.maintenance_window_defer
+
+  count = var.enable_maintenance_window == true ? 1 : 0
 }

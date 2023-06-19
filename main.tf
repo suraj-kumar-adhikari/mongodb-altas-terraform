@@ -61,7 +61,13 @@ module "mongodb_atlas_cluster" {
   #  }
 
   #  # Third party integration with datadog
-  #  enable_datadog = "yes"
+  #  enable_datadog = true
   #  datadog_api_key = ""
   #  datadog_region = ""
+
+  #  # Maintenance window
+  #  enable_maintenance_window = true
+  #  maintenance_window_day_of_week = 3
+  #  maintenance_window_hour_of_day = 20
+  #  maintenance_window_defer = false
 }
