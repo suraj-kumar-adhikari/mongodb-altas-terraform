@@ -1,8 +1,12 @@
+// Resource to add MongoDB Atlas project
+// More information can be found here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/project
 resource "mongodbatlas_project" "atlas_project" {
   name   = var.atlas_project_name
   org_id = var.atlas_org_id
 }
 
+// Resource to add MongoDB Atlas cluster
+// More information can be found here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/data-sources/cluster
 resource "mongodbatlas_cluster" "cluster" {
   depends_on = [mongodbatlas_project.atlas_project]
 
@@ -17,6 +21,8 @@ resource "mongodbatlas_cluster" "cluster" {
   provider_instance_size_name = var.atlas_cluster_size_name
 }
 
+// Resource to add ip access list for MongoDB cluster
+// More information can be found here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/project_ip_access_list
 resource "mongodbatlas_project_ip_access_list" "ip_access_list" {
   depends_on = [mongodbatlas_cluster.cluster]
 
@@ -27,6 +33,8 @@ resource "mongodbatlas_project_ip_access_list" "ip_access_list" {
   ip_address = each.value
 }
 
+// Resource to add ip access list for MongoDB cluster
+// More information can be found here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/project_ip_access_list
 resource "mongodbatlas_project_ip_access_list" "cidr_access_list" {
   depends_on = [mongodbatlas_cluster.cluster]
 
@@ -37,6 +45,8 @@ resource "mongodbatlas_project_ip_access_list" "cidr_access_list" {
   cidr_block = each.value
 }
 
+// Resource to add database user for MongoDB
+// More information can be found here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/data-sources/database_user
 resource "mongodbatlas_database_user" "admin" {
   depends_on = [mongodbatlas_cluster.cluster]
 
@@ -52,6 +62,8 @@ resource "mongodbatlas_database_user" "admin" {
   }
 }
 
+// Resource to add database user for MongoDB
+// More information can be found here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/data-sources/database_user
 resource "mongodbatlas_database_user" "application" {
   depends_on = [mongodbatlas_cluster.cluster]
 
@@ -67,6 +79,8 @@ resource "mongodbatlas_database_user" "application" {
   }
 }
 
+// Resource to add network container for MongoDB
+// More information can be found here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/data-sources/network_container
 resource "mongodbatlas_network_container" "network_container" {
   depends_on = [mongodbatlas_cluster.cluster]
 
@@ -77,6 +91,8 @@ resource "mongodbatlas_network_container" "network_container" {
   region_name      = var.atlas_cluster_region
 }
 
+// Resource to add network peering for integrating with AWS VPC
+// More information can be found here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/data-sources/network_peering
 resource "mongodbatlas_network_peering" "aws_peer" {
   depends_on = [mongodbatlas_network_container.network_container]
 
@@ -92,6 +108,8 @@ resource "mongodbatlas_network_peering" "aws_peer" {
   aws_account_id         = each.value.aws_account_id
 }
 
+// Resource to add ip access list for MongoDB cluster
+// More information can be found here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/project_ip_access_list
 resource "mongodbatlas_project_ip_access_list" "test" {
   depends_on = [mongodbatlas_network_peering.aws_peer]
 
@@ -102,6 +120,8 @@ resource "mongodbatlas_project_ip_access_list" "test" {
   comment            = each.key
 }
 
+// Resource to add third party integration such as datadog
+// More information can be found here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/data-sources/third_party_integration
 resource "mongodbatlas_third_party_integration" "datadog" {
   depends_on = [mongodbatlas_cluster.cluster]
 
@@ -113,6 +133,8 @@ resource "mongodbatlas_third_party_integration" "datadog" {
   count = var.enable_datadog == true ? 1 : 0
 }
 
+// Resource to add maintenance window for maintenance related tasks
+// More information can be found here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/maintenance_window
 resource "mongodbatlas_maintenance_window" "maintenance" {
   depends_on = [mongodbatlas_cluster.cluster]
 
