@@ -43,7 +43,7 @@ Note: Roadmap will be updated as we progress through the tasks
 
 | Name                                  | Description                                                | Type   | Default          | Required |
 |---------------------------------------|------------------------------------------------------------|--------|------------------|:--------:|
-| aws_region                            | AWS region                                                 | string | eu-west-2        |   Yes    |
+| cloud_region                          | Region in which Cloud Resources to be created              | string |                  |   Yes    |
 | atlas_org_id                          | MongoDB Atlas Organisation ID                              | string |                  |   Yes    |
 | atlas_project_name                    | MongoDB Atlas Project Name                                 | string |                  |   Yes    |
 | atlas_api_public_key                  | MongoDB Atlas API public key                               | string |                  |   Yes    |

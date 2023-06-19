@@ -1,3 +1,9 @@
+#variable "cloud_region" {
+#  description = "Region in which Cloud Resources to be created"
+#  type        = string
+#  default     = "eu-west-2"
+#}
+
 variable "atlas_org_id" {
   description = "MongoDB Atlas org id"
   type        = string
@@ -17,12 +23,6 @@ variable "atlas_api_private_key" {
   description = "Mongo Atlas private API key"
   type        = string
 }
-
-#variable "cloud_region" {
-#  description = "Region in which Cloud Resources to be created"
-#  type        = string
-#  default     = "eu-west-2"
-#}
 
 variable "atlas_cluster_provider_name" {
   description = "Cluster provider for MongoDB atlas"
@@ -55,18 +55,6 @@ variable "atlas_cluster_size_name" {
   default     = "M0"
 }
 
-#variable "atlas_cluster_cidr" {
-#  description = "Atlas CIDR block, must be at least a /24 and at most a /21"
-#  type        = string
-#  default     = "192.168.248.0/24"
-#}
-
-#variable "atlas_cluster_allow_inbound_from_cidr" {
-#  description = "CIDR block to allow inbound traffic to the cluster"
-#  type        = string
-#  default     = "95.91.214.30/32"
-#}
-
 variable "mongo_database_name" {
   description = "MongoDB Database name"
   type        = string
@@ -91,3 +79,15 @@ variable "mongo_database_app_password" {
   description = "MongoDB Database application user password"
   type        = string
 }
+
+#variable "atlas_cluster_cidr" {
+#  description = "Atlas CIDR block, must be at least a /24 and at most a /21"
+#  type        = string
+#  default     = "192.168.248.0/24"
+#}
+
+#variable "atlas_cluster_allow_inbound_from_cidr" {
+#  description = "CIDR block to allow inbound traffic to the cluster"
+#  type        = string
+#  default     = "95.91.214.30/32"
+#}
