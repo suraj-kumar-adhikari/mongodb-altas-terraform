@@ -13,3 +13,12 @@ terraform {
 
   required_version = ">= 1.5.0"
 }
+
+provider "aws" {
+  region = var.aws_region
+}
+
+provider "mongodbatlas" {
+  public_key  = var.atlas_api_public_key
+  private_key = var.atlas_api_private_key
+}
