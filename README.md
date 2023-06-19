@@ -247,18 +247,18 @@ module "mongodb_atlas_cluster" {
 | mongo_database_admin_password  | MongoDB Database admin password                                              | string   |                  |   Yes    |
 | mongo_database_app_user        | MongoDB Database application username                                        | string   |                  |   Yes    |
 | mongo_database_app_password    | MongoDB Database application user password                                   | string   |                  |   Yes    |
-| ip_access_list                 | Network ip access-lists for the project                                      | map(any) | {}               |   Yes    |
-| cidr_access_list               | Network cidr access-lists for the project                                    | map(any) | {}               |   Yes    |
-| atlas_cluster_cidr             | Atlas CIDR block, must be at least a /24 and at most a /21                   | map(any) | {}               |   Yes    |
-| vpc_peer                       | An object that contains all VPC peering requests from the cluster to AWS VPC | map(any) | {}               |   Yes    |
-| vpc_peer_sg                    | VPC peer security group map                                                  | map(any) | {}               |   Yes    |
-| enable_datadog                 | Enable Datadog or not                                                        | bool     | false            |   Yes    |
-| datadog_api_key                | Datadog api key                                                              | string   | ""               |   Yes    |
-| datadog_region                 | Datadog region                                                               | string   | ""               |   Yes    |
-| enable_maintenance_window      | Enable Datadog or not                                                        | bool     | false            |   Yes    |
-| maintenance_window_day_of_week | Maintenance window day of the week                                           | number   | 1                |   Yes    |
-| maintenance_window_hour_of_day | Maintenance window hour of the day                                           | number   | 18               |   Yes    |
-| maintenance_window_defer       | Enable Maintenance window or not                                             | bool     | false            |   Yes    |
+| ip_access_list                 | Network ip access-lists for the project                                      | map(any) | {}               |    No    |
+| cidr_access_list               | Network cidr access-lists for the project                                    | map(any) | {}               |    No    |
+| atlas_cluster_cidr             | Atlas CIDR block, must be at least a /24 and at most a /21                   | map(any) | {}               |    No    |
+| vpc_peer                       | An object that contains all VPC peering requests from the cluster to AWS VPC | map(any) | {}               |    No    |
+| vpc_peer_sg                    | VPC peer security group map                                                  | map(any) | {}               |    No    |
+| enable_datadog                 | Enable Datadog or not                                                        | bool     | false            |    No    |
+| datadog_api_key                | Datadog api key                                                              | string   | ""               |    No    |
+| datadog_region                 | Datadog region                                                               | string   | ""               |    No    |
+| enable_maintenance_window      | Enable Datadog or not                                                        | bool     | false            |    No    |
+| maintenance_window_day_of_week | Maintenance window day of the week                                           | number   | 1                |    No    |
+| maintenance_window_hour_of_day | Maintenance window hour of the day                                           | number   | 18               |    No    |
+| maintenance_window_defer       | Enable Maintenance window or not                                             | bool     | false            |    No    |
 
 
 ## Outputs
