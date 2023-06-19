@@ -61,7 +61,7 @@ module "mongodb_atlas_cluster" {
   #  }
 
   #  # Third party integration with datadog
-    enable_datadog = "yes"
+  #  enable_datadog = "yes"
   #  datadog_api_key = ""
   #  datadog_region = ""
 }
