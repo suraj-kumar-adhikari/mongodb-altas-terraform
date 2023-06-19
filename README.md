@@ -35,8 +35,9 @@ Note: Roadmap will be updated as we progress through the tasks
   - [x] Add a Github action workflow file which gets triggered whenever a new pull request gets created. It will run terraform validate, terraform plan and post the details of the run to the pull request as a comment.
   - [x] Add a Github action workflow file to terraform plan and apply once the changes are merged to master.
 - [x] Add terraform resources from mongodbatlas provider to create mongodbatlas database
-- [ ] Add terraform resources for AWS VPC peering with the help of aws provider
-- [ ] Add terraform resources for third party integration such as datadog for alerting
+- [x] Add terraform resources for AWS VPC peering with the help of aws provider
+- [x] Add terraform resources for third party integration such as datadog for alerting
+- [ ] Add terraform resources for maintenance window
 - [ ] Add terratest for integration test
 
 ## Inputs
@@ -54,7 +55,6 @@ Note: Roadmap will be updated as we progress through the tasks
 | atlas_cluster_version                 | Version of the MongoDB cluster to deploy                   | string | 6.0              |   Yes    |
 | atlas_cluster_size_name               | Type of the MongoDB cluster to deploy                      | string | M0               |   Yes    |
 | atlas_cluster_cidr                    | Atlas CIDR block, must be at least a /24 and at most a /21 | string | 192.168.248.0/24 |   Yes    |
-| atlas_cluster_allow_inbound_from_cidr | CIDR block to allow inbound traffic to the cluster         | string | 192.168.248.0/24 |   Yes    |
 | mongo_database_name                   | MongoDB Database name                                      | string |                  |   Yes    |
 | mongo_database_admin_user             | MongoDB Database admin username                            | string |                  |   Yes    |
 | mongo_database_admin_password         | MongoDB Database admin password                            | string |                  |   Yes    |
