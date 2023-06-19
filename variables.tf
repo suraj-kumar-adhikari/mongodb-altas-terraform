@@ -100,7 +100,6 @@ variable "cidr_access_list" {
 variable "atlas_cluster_cidr" {
   description = "Atlas CIDR block, must be at least a /24 and at most a /21"
   type        = string
-  default     = "192.168.248.0/24"
 }
 
 variable "vpc_peer" {
@@ -115,6 +114,12 @@ variable "vpc_peer_sg" {
   default     = {}
 }
 
+variable "enable_datadog" {
+  description = "Enable Datadog or not"
+  type        = bool
+  default     = false
+}
+
 variable "datadog_api_key" {
   description = "Datadog api key"
   type        = string
@@ -125,4 +130,30 @@ variable "datadog_region" {
   description = "Datadog region"
   type        = string
   default     = ""
+}
+
+variable "enable_maintenance_window" {
+  description = "Enable Datadog or not"
+  type        = bool
+  default     = false
+}
+
+# Documentation here https://github.com/mongodb/terraform-provider-mongodbatlas/blob/master/website/docs/r/maintenance_window.html.markdown
+variable "maintenance_window_day_of_week" {
+  description = "Maintenance window day of the week"
+  type        = number
+  default     = 1
+}
+
+# Documentation here https://github.com/mongodb/terraform-provider-mongodbatlas/blob/master/website/docs/r/maintenance_window.html.markdown
+variable "maintenance_window_hour_of_day" {
+  description = "Maintenance window hour of the day"
+  type        = number
+  default     = 18
+}
+
+variable "maintenance_window_defer" {
+  description = "Enable Maintenance window or not"
+  type        = bool
+  default     = false
 }
