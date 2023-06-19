@@ -113,3 +113,15 @@ variable "vpc_peer_sg" {
   type        = map(any)
   default     = {}
 }
+
+variable "datadog_api_key" {
+  description = "Datadog api key"
+  type        = string
+  default     = ""
+}
+
+variable "datadog_region" {
+  description = "Datadog region"
+  type        = string
+  default     = ""
+}
