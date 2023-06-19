@@ -41,30 +41,30 @@ Note: Roadmap will be updated as we progress through the tasks
 
 ## Inputs
 
-| Name                                  | Description                                                  | Type     | Default          | Required |
-|---------------------------------------|--------------------------------------------------------------|----------|------------------|:--------:|
-| aws_region                            | AWS region                                                   | string   | eu-west-2        |   Yes    |
-| atlas_org_id                          | MongoDB Atlas Organisation ID                                | string   |                  |   Yes    |
-| atlas_project_name                    | MongoDB Atlas Project Name                                   | string   |                  |   Yes    |
-| atlas_api_public_key                  | MongoDB Atlas API public key                                 | string   |                  |   Yes    |
-| atlas_api_private_key                 | MongoDB Atlas API private key                                | string   |                  |   Yes    |
-| atlas_cluster_provider_name           | Cluster provider for MongoDB atlas                           | string   | TENANT           |   Yes    |
-| atlas_cluster_backing_provider        | Cloud provider for MongoDB atlas                             | string   | TENANT           |   Yes    |
-| atlas_cluster_region                  | Mongo Atlas region name                                      | string   | EU_CENTRAL_1     |   Yes    |
-| atlas_cluster_version                 | Version of the MongoDB cluster to deploy                     | string   | 6.0              |   Yes    |
-| atlas_cluster_size_name               | Type of the MongoDB cluster to deploy                        | string   | M0               |   Yes    |
-| atlas_cluster_cidr                    | Atlas CIDR block, must be at least a /24 and at most a /21   | string   | 192.168.248.0/24 |   Yes    |
-| atlas_cluster_allow_inbound_from_cidr | CIDR block to allow inbound traffic to the cluster           | string   | 192.168.248.0/24 |   Yes    |
-| mongo_database_name                   | MongoDB Database name                                        | string   | personal_db      |   Yes    |
-| mongo_database_admin_user             | MongoDB Database admin username                              | string   | admin            |   Yes    |
-| mongo_database_admin_password         | MongoDB Database admin password                              | string   |                  |   Yes    |
-| mongo_database_app_user               | MongoDB Database application username                        | string   | app_user         |   Yes    |
-| mongo_database_app_password           | MongoDB Database application user password                   | string   | app_user         |   Yes    |
-| mongo_database_collections            | Mongo database collections to generate user role assignments | []string | ["test"]         |   Yes    |
+| Name                                  | Description                                                | Type   | Default          | Required |
+|---------------------------------------|------------------------------------------------------------|--------|------------------|:--------:|
+| aws_region                            | AWS region                                                 | string | eu-west-2        |   Yes    |
+| atlas_org_id                          | MongoDB Atlas Organisation ID                              | string |                  |   Yes    |
+| atlas_project_name                    | MongoDB Atlas Project Name                                 | string |                  |   Yes    |
+| atlas_api_public_key                  | MongoDB Atlas API public key                               | string |                  |   Yes    |
+| atlas_api_private_key                 | MongoDB Atlas API private key                              | string |                  |   Yes    |
+| atlas_cluster_provider_name           | Cluster provider for MongoDB atlas                         | string | TENANT           |   Yes    |
+| atlas_cluster_backing_provider        | Cloud provider for MongoDB atlas                           | string | AWS              |   Yes    |
+| atlas_cluster_region                  | Mongo Atlas region name                                    | string | EU_CENTRAL_1     |   Yes    |
+| atlas_cluster_version                 | Version of the MongoDB cluster to deploy                   | string | 6.0              |   Yes    |
+| atlas_cluster_size_name               | Type of the MongoDB cluster to deploy                      | string | M0               |   Yes    |
+| atlas_cluster_cidr                    | Atlas CIDR block, must be at least a /24 and at most a /21 | string | 192.168.248.0/24 |   Yes    |
+| atlas_cluster_allow_inbound_from_cidr | CIDR block to allow inbound traffic to the cluster         | string | 192.168.248.0/24 |   Yes    |
+| mongo_database_name                   | MongoDB Database name                                      | string |                  |   Yes    |
+| mongo_database_admin_user             | MongoDB Database admin username                            | string |                  |   Yes    |
+| mongo_database_admin_password         | MongoDB Database admin password                            | string |                  |   Yes    |
+| mongo_database_app_user               | MongoDB Database application username                      | string |                  |   Yes    |
+| mongo_database_app_password           | MongoDB Database application user password                 | string |                  |   Yes    |
+
 
 ## Outputs
 
-| Name                   | Description              |
-|------------------------|--------------------------|
-| cluster_srv_address    | Cluster service address  |
-| mongo_database_version | MongoDB Database version |
+| Name                    | Description              |
+|-------------------------|--------------------------|
+| cluster_service_address | Cluster service address  |
+| mongo_database_version  | MongoDB Database version |

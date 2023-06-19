@@ -1,4 +1,4 @@
-output "cluster_srv_address" {
+output "cluster_service_address" {
   value       = mongodbatlas_cluster.main.srv_address
   description = "Cluster service address"
 }
