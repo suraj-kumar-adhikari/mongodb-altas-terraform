@@ -49,12 +49,12 @@ Note: Roadmap will be updated as we progress through the tasks
 | atlas_project_name                    | MongoDB Atlas Project Name                                 | string |                  |   Yes    |
 | atlas_api_public_key                  | MongoDB Atlas API public key                               | string |                  |   Yes    |
 | atlas_api_private_key                 | MongoDB Atlas API private key                              | string |                  |   Yes    |
-| atlas_cluster_provider_name           | Cluster provider for MongoDB atlas                         | string | TENANT           |   Yes    |
-| atlas_cluster_backing_provider        | Cloud provider for MongoDB atlas                           | string | AWS              |   Yes    |
-| atlas_cluster_region                  | Mongo Atlas region name                                    | string | EU_CENTRAL_1     |   Yes    |
-| atlas_cluster_version                 | Version of the MongoDB cluster to deploy                   | string | 6.0              |   Yes    |
-| atlas_cluster_size_name               | Type of the MongoDB cluster to deploy                      | string | M0               |   Yes    |
-| atlas_cluster_cidr                    | Atlas CIDR block, must be at least a /24 and at most a /21 | string | 192.168.248.0/24 |   Yes    |
+| atlas_cluster_provider_name           | Cluster provider for MongoDB atlas                         | string | TENANT           |    No    |
+| atlas_cluster_backing_provider        | Cloud provider for MongoDB atlas                           | string | AWS              |    No    |
+| atlas_cluster_region                  | Mongo Atlas region name                                    | string | EU_CENTRAL_1     |    No    |
+| atlas_cluster_version                 | Version of the MongoDB cluster to deploy                   | string | 6.0              |    No    |
+| atlas_cluster_size_name               | Type of the MongoDB cluster to deploy                      | string | M0               |    No    |
+| atlas_cluster_cidr                    | Atlas CIDR block, must be at least a /24 and at most a /21 | string | 192.168.248.0/24 |    No    |
 | mongo_database_name                   | MongoDB Database name                                      | string |                  |   Yes    |
 | mongo_database_admin_user             | MongoDB Database admin username                            | string |                  |   Yes    |
 | mongo_database_admin_password         | MongoDB Database admin password                            | string |                  |   Yes    |

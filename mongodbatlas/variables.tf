@@ -114,6 +114,12 @@ variable "vpc_peer_sg" {
   default     = {}
 }
 
+variable "enable_datadog" {
+  description = "Enable Datadog or not"
+  type        = string
+  default     = "no"
+}
+
 variable "datadog_api_key" {
   description = "Datadog api key"
   type        = string
