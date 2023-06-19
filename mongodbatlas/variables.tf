@@ -138,14 +138,14 @@ variable "enable_maintenance_window" {
   default     = false
 }
 
-# Documentation here https://github.com/mongodb/terraform-provider-mongodbatlas/blob/master/website/docs/r/maintenance_window.html.markdown
+# Documentation here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/maintenance_window
 variable "maintenance_window_day_of_week" {
   description = "Maintenance window day of the week"
   type        = number
   default     = 1
 }
 
-# Documentation here https://github.com/mongodb/terraform-provider-mongodbatlas/blob/master/website/docs/r/maintenance_window.html.markdown
+# Documentation here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/maintenance_window
 variable "maintenance_window_hour_of_day" {
   description = "Maintenance window hour of the day"
   type        = number
