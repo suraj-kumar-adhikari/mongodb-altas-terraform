@@ -13,15 +13,15 @@ In oder to use the terraform module, you need to have items listed below.
 
 ## Terraform Requirements
 
-| Name | Version |
-|------|---------|
+| Name              | Version   |
+|-------------------|-----------|
 | terraform version | \>= 1.5.0 |
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| aws provider version | \~> 5.3 |
+| Name                           | Version  |
+|--------------------------------|----------|
+| aws provider version           | \~> 5.3  |
 | mongodb atlas provider version | \~> 1.10 |
 
 ## Roadmap
@@ -37,7 +37,7 @@ Note: Roadmap will be updated as we progress through the tasks
 - [x] Add terraform resources from mongodbatlas provider to create mongodbatlas database
 - [ ] Add terraform resources for AWS VPC peering with the help of aws provider
 - [ ] Add terraform resources for third party integration such as datadog for alerting
-- [ ] Add terratest integration test for third party integration such as datadog for alerting
+- [ ] Add terratest for integration test
 
 ## Inputs
 

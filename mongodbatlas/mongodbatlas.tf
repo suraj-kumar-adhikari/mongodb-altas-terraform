@@ -15,6 +15,26 @@ resource "mongodbatlas_cluster" "main" {
   provider_instance_size_name = var.atlas_cluster_size_name
 }
 
+resource "mongodbatlas_project_ip_access_list" "ip_access_list" {
+  depends_on = [mongodbatlas_cluster.main]
+
+  for_each = var.ip_access_list
+
+  project_id = mongodbatlas_project.atlas_project.id
+  comment    = each.key
+  ip_address = each.value
+}
+
+resource "mongodbatlas_project_ip_access_list" "cidr_access_list" {
+  depends_on = [mongodbatlas_cluster.main]
+
+  for_each = var.cidr_access_list
+
+  project_id = mongodbatlas_project.atlas_project.id
+  comment    = each.key
+  cidr_block = each.value
+}
+
 resource "mongodbatlas_database_user" "admin" {
   depends_on         = [mongodbatlas_cluster.main]
   username           = var.mongo_database_admin_user
