@@ -47,7 +47,7 @@ You can find all the examples of this module below, just click on the examples.
 <details>
   <summary>Provision cluster</summary>
 
-### Atlas Cluster Examples
+### Atlas Cluster Example with free tier
   ```terraform
 module "mongodb_atlas_cluster" {
     source = "./mongodbatlas"
@@ -87,9 +87,9 @@ module "mongodb_atlas_cluster" {
     }
   
     # For cidr access list
-      cidr_access_list = {
-        "CIDR" : "192.168.0.0/24"
-      }
+    cidr_access_list = {
+      "CIDR" : "192.168.0.0/24"
+    }
 }
   ```
 </details>
@@ -97,7 +97,7 @@ module "mongodb_atlas_cluster" {
 <details>
   <summary>Provision cluster with VPC peering</summary>
 
-### Atlas Cluster Examples
+### Atlas Cluster example with VPC peering only works with MO+ clusters (Current example only supports free tier)
   ```terraform
 module "mongodb_atlas_cluster" {
     source = "./mongodbatlas"
@@ -137,31 +137,31 @@ module "mongodb_atlas_cluster" {
     }
   
     # For cidr access list
-      cidr_access_list = {
-        "CIDR" : "192.168.0.0/24"
-      }
+    cidr_access_list = {
+      "CIDR" : "192.168.0.0/24"
+    }
   
-     # VPC peering example
-      vpc_peer = {
-        vpc_peer1 : {
-          aws_account_id : "<account-id>"
-          region : "eu-west-1"
-          vpc_id : "<vpc-id>"
-          route_table_cidr_block : "<cidr-block>"
-        },
-        vpc_peer2 : {
-          aws_account_id : "<account-id>"
-          region : "eu-central-1"
-          vpc_id : "<vpc-id>"
-          route_table_cidr_block : "<cidr-block>"
-        }
+    # VPC peering example
+    vpc_peer = {
+      vpc_peer1 : {
+        aws_account_id : "<account-id>"
+        region : "eu-west-1"
+        vpc_id : "<vpc-id>"
+        route_table_cidr_block : "<cidr-block>"
+      },
+      vpc_peer2 : {
+        aws_account_id : "<account-id>"
+        region : "eu-central-1"
+        vpc_id : "<vpc-id>"
+        route_table_cidr_block : "<cidr-block>"
       }
+    }
   
-      # VPC security group allow multiple security group access
-      vpc_peer_sg = {
-        "sg 1": "<sg-id>"
-        "sg 2": "<sg-id>"
-      }
+    # VPC security group allow multiple security group access
+    vpc_peer_sg = {
+      "sg 1": "<sg-id>"
+      "sg 2": "<sg-id>"
+    }
 }
   ```
 </details>
@@ -169,7 +169,7 @@ module "mongodb_atlas_cluster" {
 <details>
   <summary>Provision cluster with Datadog and Maintenance window</summary>
 
-### Atlas Cluster Examples
+### Atlas Cluster examples with third party integration datadog and maintenance window
   ```terraform
 module "mongodb_atlas_cluster" {
     source = "./mongodbatlas"
@@ -209,9 +209,9 @@ module "mongodb_atlas_cluster" {
     }
   
     # For cidr access list
-      cidr_access_list = {
-        "CIDR" : "192.168.0.0/24"
-      }
+    cidr_access_list = {
+      "CIDR" : "192.168.0.0/24"
+    }
   
     # Third party integration with datadog
     enable_datadog = true

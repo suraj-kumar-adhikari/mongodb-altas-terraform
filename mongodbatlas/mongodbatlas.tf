@@ -7,6 +7,7 @@ resource "mongodbatlas_project" "atlas_project" {
 
 // Resource to add MongoDB Atlas cluster
 // More information can be found here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/data-sources/cluster
+// Only using free tier example here https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/cluster#example-aws-free-tier-cluster
 resource "mongodbatlas_cluster" "cluster" {
   depends_on = [mongodbatlas_project.atlas_project]
 
