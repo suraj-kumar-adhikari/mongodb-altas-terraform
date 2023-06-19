@@ -5,7 +5,7 @@ resource "mongodbatlas_project" "atlas_project" {
 
 resource "mongodbatlas_cluster" "cluster" {
   project_id = mongodbatlas_project.atlas_project.id
-  name       = var.atlas_project_name
+  name       = var.atlas_cluster_name
 
   mongo_db_major_version = var.atlas_cluster_version
 
@@ -59,4 +59,37 @@ resource "mongodbatlas_database_user" "application" {
     role_name     = "readWrite"
     database_name = var.mongo_database_name
   }
+}
+
+resource "mongodbatlas_network_container" "network_container" {
+  depends_on         = [mongodbatlas_cluster.cluster]
+
+  project_id       = mongodbatlas_project.atlas_project.id
+  atlas_cidr_block = var.atlas_cluster_cidr
+  provider_name    = var.atlas_cluster_backing_provider
+  region_name      = var.atlas_cluster_region
+}
+
+resource "mongodbatlas_network_peering" "aws_peer" {
+  depends_on         = [mongodbatlas_network_container.network_container]
+
+  for_each = var.vpc_peer
+
+  accepter_region_name   = each.value.region
+  project_id             = mongodbatlas_project.atlas_project.id
+  container_id           = mongodbatlas_network_container.network_container.id
+  provider_name          = var.atlas_cluster_backing_provider
+  route_table_cidr_block = each.value.route_table_cidr_block
+  vpc_id                 = each.value.vpc_id
+  aws_account_id         = each.value.aws_account_id
+}
+
+resource "mongodbatlas_project_ip_access_list" "test" {
+  depends_on = [mongodbatlas_network_peering.aws_peer]
+
+  for_each = var.vpc_peer_sg
+
+  project_id         = mongodbatlas_project.atlas_project.id
+  aws_security_group = each.value
+  comment            = each.key
 }
