@@ -108,7 +108,7 @@ module "mongodb_atlas_cluster" {
     atlas_cluster_backing_provider = "AWS"
     atlas_cluster_region           = "EU_CENTRAL_1"
     atlas_cluster_version          = "6.0"
-    atlas_cluster_size_name        = "M0"
+    atlas_cluster_size_name        = "M10"
   
     # Authentication credentials for authenticating to MongoDB via API
     atlas_api_private_key = "<sensitive-value-get-it-via-tfvars-or-vault>"
@@ -180,7 +180,7 @@ module "mongodb_atlas_cluster" {
     atlas_cluster_backing_provider = "AWS"
     atlas_cluster_region           = "EU_CENTRAL_1"
     atlas_cluster_version          = "6.0"
-    atlas_cluster_size_name        = "M0"
+    atlas_cluster_size_name        = "M10"
   
     # Authentication credentials for authenticating to MongoDB via API
     atlas_api_private_key = "<sensitive-value-get-it-via-tfvars-or-vault>"
