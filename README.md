@@ -26,7 +26,7 @@ In oder to use the terraform module, you need to have items listed below.
 
 ## Roadmap
 
-Note: Roadmap will be updated as we progress through the tasks
+Steps taken in order to develop this module
 
 - [x] Introduce readme 
   - [x] Create an initial readme file explaining the details fo the module.
