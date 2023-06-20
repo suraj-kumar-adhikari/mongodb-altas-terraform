@@ -45,8 +45,8 @@ func TestMongoDbClusterCreationIsSuccessFull(t *testing.T) {
 	databaseVersion := terraform.Output(t, terraformOptions, "mongo_database_version")
 	paused := terraform.Output(t, terraformOptions, "paused")
 
-	checkMongoDbVersionBeingsWithSix := strings.HasPrefix(databaseVersion, "6")
+	checkMongoDbVersionBeginsWithSix := strings.HasPrefix(databaseVersion, "6")
 
-	assert.True(t, checkMongoDbVersionBeingsWithSix)
+	assert.True(t, checkMongoDbVersionBeginsWithSix)
 	assert.Equal(t, "false", paused)
 }
