@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestTerraformHelloWorldExample(t *testing.T) {
+func TestMongoDbClusterCreationIsSuccessFull(t *testing.T) {
 	terraformVars := GetTerraformVariables()
 
 	terraformOptions := &terraform.Options{
