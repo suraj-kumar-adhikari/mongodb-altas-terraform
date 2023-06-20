@@ -1,6 +1,8 @@
 name: pull-request-pipeline
 on:
   pull_request:
+    paths-ignore:
+      - '**.md'
 env:
     TF_CLOUD_ORGANIZATION: "${{ vars.TF_CLOUD_ORGANIZATION }}"
     TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
@@ -15,11 +17,42 @@ jobs:
         pull-requests: write
     steps:
         - uses: actions/checkout@v3
+          name: Checkout
+
+        - name: Setup Go
+          uses: actions/setup-go@v4
+          with:
+            go-version: '1.20'
+            check-latest: true
+            cache: true
+            cache-dependency-path: tests/go.sum
+
         - uses: hashicorp/setup-terraform@v2
           with:
             terraform_version: 1.5.0
             terraform_wrapper: false
- 
+
+        - name: Run integration tests
+          working-directory: tests
+          run: go mod tidy && go test -v -timeout 30m
+          env:
+            ATLAS_ORG_ID: ${{ vars.ATLAS_ORG_ID }}
+            ATLAS_PROJECT_NAME: ${{ vars.ATLAS_PROJECT_NAME }}
+            ATLAS_CLUSTER_NAME: ${{ vars.ATLAS_CLUSTER_NAME }}
+            ATLAS_API_PUBLIC_KEY: ${{ secrets.ATLAS_API_PUBLIC_KEY }}
+            ATLAS_API_PRIVATE_KEY: ${{ secrets.ATLAS_API_PRIVATE_KEY }}
+            ATLAS_CLUSTER_PROVIDER_NAME: ${{ vars.ATLAS_CLUSTER_PROVIDER_NAME }}
+            ATLAS_CLUSTER_BACKING_PROVIDER: ${{ vars.ATLAS_CLUSTER_BACKING_PROVIDER }}
+            ATLAS_CLUSTER_REGION: ${{ vars.ATLAS_CLUSTER_REGION }}
+            ATLAS_CLUSTER_VERSION: ${{ vars.ATLAS_CLUSTER_VERSION }}
+            ATLAS_CLUSTER_SIZE_NAME: ${{ vars.ATLAS_CLUSTER_SIZE_NAME }}
+            MONGO_DATABASE_NAME: ${{ vars.MONGO_DATABASE_NAME }}
+            MONGO_DATABASE_ADMIN_USER: ${{ vars.MONGO_DATABASE_ADMIN_USER }}
+            MONGO_DATABASE_ADMIN_PASSWORD: ${{ secrets.MONGO_DATABASE_ADMIN_PASSWORD }}
+            MONGO_DATABASE_APP_USER: ${{ vars.MONGO_DATABASE_APP_USER }}
+            MONGO_DATABASE_APP_PASSWORD: ${{ secrets.MONGO_DATABASE_APP_PASSWORD }}
+            ATLAS_CLUSTER_CIDR: ${{ vars.ATLAS_CLUSTER_CIDR }}
+
         - name: Upload Configuration
           uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
           id: plan-upload
@@ -27,7 +60,7 @@ jobs:
             workspace: ${{ env.TF_WORKSPACE }}
             directory: ${{ env.CONFIG_DIRECTORY }}
             speculative: true
- 
+
         - name: Create Plan Run
           uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
           id: plan-run
@@ -41,7 +74,7 @@ jobs:
           id: plan-output
           with:
             plan: ${{ fromJSON(steps.plan-run.outputs.payload).data.relationships.plan.data.id }}
-                     
+
         - name: Update PR
           uses: actions/github-script@v6
           id: plan-comment
@@ -65,7 +98,7 @@ jobs:
              \`\`\`
              [Terraform Cloud Plan](${{ steps.plan-run.outputs.run_link }})
              `;
-             
+
              // 3. Delete previous comment so PR timeline makes sense
              if (botComment) {
                 github.rest.issues.deleteComment({
