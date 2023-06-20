@@ -1,6 +1,8 @@
 name: pull-request-pipeline
 on:
   pull_request:
+    paths-ignore:
+      - '**.md'
 env:
     TF_CLOUD_ORGANIZATION: "${{ vars.TF_CLOUD_ORGANIZATION }}"
     TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
