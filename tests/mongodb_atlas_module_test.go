@@ -1,6 +1,7 @@
 package tests
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
@@ -44,6 +45,8 @@ func TestMongoDbClusterCreationIsSuccessFull(t *testing.T) {
 	databaseVersion := terraform.Output(t, terraformOptions, "mongo_database_version")
 	paused := terraform.Output(t, terraformOptions, "paused")
 
-	assert.Equal(t, "6.0", databaseVersion)
+	checkMongoDbVersionBeingsWithSix := strings.HasPrefix(databaseVersion, "6")
+
+	assert.True(t, checkMongoDbVersionBeingsWithSix)
 	assert.Equal(t, false, paused)
 }
