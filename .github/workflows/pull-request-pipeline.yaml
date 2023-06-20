@@ -24,6 +24,11 @@ jobs:
           with:
             go-version: '1.20'
 
+        - uses: hashicorp/setup-terraform@v2
+          with:
+            terraform_version: 1.5.0
+            terraform_wrapper: false
+
         - name: Run integration tests
           working-directory: tests
           run: go mod tidy && go test -v -timeout 30m
@@ -42,11 +47,6 @@ jobs:
             MONGO_DATABASE_ADMIN_USER: ${{ vars.MONGO_DATABASE_ADMIN_USER }}
             MONGO_DATABASE_ADMIN_PASSWORD: ${{ secrets.MONGO_DATABASE_ADMIN_PASSWORD }}
 
-#        - uses: hashicorp/setup-terraform@v2
-#          with:
-#            terraform_version: 1.5.0
-#            terraform_wrapper: false
-#
 #        - name: Upload Configuration
 #          uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
 #          id: plan-upload
