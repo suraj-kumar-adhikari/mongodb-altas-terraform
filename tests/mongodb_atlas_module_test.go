@@ -48,5 +48,5 @@ func TestMongoDbClusterCreationIsSuccessFull(t *testing.T) {
 	checkMongoDbVersionBeingsWithSix := strings.HasPrefix(databaseVersion, "6")
 
 	assert.True(t, checkMongoDbVersionBeingsWithSix)
-	assert.Equal(t, false, paused)
+	assert.Equal(t, "false", paused)
 }
