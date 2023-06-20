@@ -45,7 +45,9 @@ jobs:
             ATLAS_CLUSTER_SIZE_NAME: ${{ vars.ATLAS_CLUSTER_SIZE_NAME }}
             MONGO_DATABASE_NAME: ${{ vars.MONGO_DATABASE_NAME }}
             MONGO_DATABASE_ADMIN_USER: ${{ vars.MONGO_DATABASE_ADMIN_USER }}
-            MONGO_DATABASE_ADMIN_PASSWORD: ${{ secrets.MONGO_DATABASE_ADMIN_PASSWORD }}
+            MONGO_DATABASE_APP_USER: ${{ vars.MONGO_DATABASE_APP_USER }}
+            MONGO_DATABASE_APP_PASSWORD: ${{ secrets.MONGO_DATABASE_APP_PASSWORD }}
+            ATLAS_CLUSTER_CIDR: ${{ vars.ATLAS_CLUSTER_CIDR }}
 
 #        - name: Upload Configuration
 #          uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0

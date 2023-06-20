@@ -18,7 +18,6 @@ type TerraformVariables struct {
 	MongoDatabaseAdminPassword  string
 	MongoDatabaseAppUser        string
 	MongoDatabaseAppPassword    string
-	IpAccessList                map[string]string
 	AtlasClusterCidr            string
 }
 
@@ -37,5 +36,8 @@ func GetTerraformVariables() TerraformVariables {
 		MongoDatabaseName:           os.Getenv("MONGO_DATABASE_NAME"),
 		MongoDatabaseAdminUser:      os.Getenv("MONGO_DATABASE_ADMIN_USER"),
 		MongoDatabaseAdminPassword:  os.Getenv("MONGO_DATABASE_ADMIN_PASSWORD"),
+		MongoDatabaseAppUser:        os.Getenv("MONGO_DATABASE_APP_USER"),
+		MongoDatabaseAppPassword:    os.Getenv("MONGO_DATABASE_APP_PASSWORD"),
+		AtlasClusterCidr:            os.Getenv("ATLAS_CLUSTER_CIDR"),
 	}
 }

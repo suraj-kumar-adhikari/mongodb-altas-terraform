@@ -28,7 +28,6 @@ func TestMongoDbClusterCreationIsSuccessFull(t *testing.T) {
 			"mongo_database_admin_password":  terraformVars.MongoDatabaseAdminPassword,
 			"mongo_database_app_user":        terraformVars.MongoDatabaseAppUser,
 			"mongo_database_app_password":    terraformVars.MongoDatabaseAppPassword,
-			"ip_access_list":                 terraformVars.IpAccessList,
 			"atlas_cluster_cidr":             terraformVars.AtlasClusterCidr,
 		},
 	}
