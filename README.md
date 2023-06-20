@@ -38,7 +38,7 @@ Note: Roadmap will be updated as we progress through the tasks
 - [x] Add terraform resources for AWS VPC peering with the help of aws provider
 - [x] Add terraform resources for third party integration such as datadog for alerting
 - [x] Add terraform resources for maintenance window
-- [ ] Add terratest for integration test
+- [x] Add terratest for integration test
 
 ## Usages / Examples
 
