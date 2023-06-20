@@ -8,12 +8,32 @@ import (
 )
 
 func TestTerraformHelloWorldExample(t *testing.T) {
-	// Construct the terraform options with default retryable errors to handle the most common
-	// retryable errors in terraform testing.
-	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		// Set the path to the Terraform code that will be tested.
+	terraformVars := GetTerraformVariables()
+
+	terraformOptions := &terraform.Options{
 		TerraformDir: "../",
-	})
+		Vars: map[string]interface{}{
+			"atlas_org_id":                   terraformVars.AtlasOrgId,
+			"atlas_project_name":             terraformVars.AtlasProjectName,
+			"atlas_cluster_name":             terraformVars.AtlasClusterName,
+			"atlas_api_public_key":           terraformVars.AtlasApiPublicKey,
+			"atlas_api_private_key":          terraformVars.AtlasApiPrivateKey,
+			"atlas_cluster_provider_name":    terraformVars.AtlasClusterProviderName,
+			"atlas_cluster_backing_provider": terraformVars.AtlasClusterBackingProvider,
+			"atlas_cluster_region":           terraformVars.AtlasClusterRegion,
+			"atlas_cluster_version":          terraformVars.AtlasClusterVersion,
+			"atlas_cluster_size_name":        terraformVars.AtlasClusterSizeName,
+			"mongo_database_name":            terraformVars.MongoDatabaseName,
+			"mongo_database_admin_user":      terraformVars.MongoDatabaseAdminUser,
+			"mongo_database_admin_password":  terraformVars.MongoDatabaseAdminPassword,
+			"mongo_database_app_user":        terraformVars.MongoDatabaseAppUser,
+			"mongo_database_app_password":    terraformVars.MongoDatabaseAppPassword,
+			"ip_access_list":                 terraformVars.IpAccessList,
+			"atlas_cluster_cidr":             terraformVars.AtlasClusterCidr,
+		},
+	}
+
+	terraformOptions = terraform.WithDefaultRetryableErrors(t, terraformOptions)
 
 	// Clean up resources with "terraform destroy" at the end of the test.
 	defer terraform.Destroy(t, terraformOptions)
@@ -26,5 +46,5 @@ func TestTerraformHelloWorldExample(t *testing.T) {
 	paused := terraform.Output(t, terraformOptions, "paused")
 
 	assert.Equal(t, "6.0", databaseVersion)
-	assert.Equal(t, "6.0", paused)
+	assert.Equal(t, false, paused)
 }
