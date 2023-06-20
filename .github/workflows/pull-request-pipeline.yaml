@@ -17,69 +17,92 @@ jobs:
         pull-requests: write
     steps:
         - uses: actions/checkout@v3
-        - uses: hashicorp/setup-terraform@v2
-          with:
-            terraform_version: 1.5.0
-            terraform_wrapper: false
- 
-        - name: Upload Configuration
-          uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
-          id: plan-upload
-          with:
-            workspace: ${{ env.TF_WORKSPACE }}
-            directory: ${{ env.CONFIG_DIRECTORY }}
-            speculative: true
- 
-        - name: Create Plan Run
-          uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
-          id: plan-run
-          with:
-            workspace: ${{ env.TF_WORKSPACE }}
-            configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
-            plan_only: true
+          name: Checkout
 
-        - name: Get Plan Output
-          uses: hashicorp/tfc-workflows-github/actions/plan-output@v1.0.0
-          id: plan-output
+        - name: Setup Go and run integration tests
+          uses: actions/setup-go@v4
           with:
-            plan: ${{ fromJSON(steps.plan-run.outputs.payload).data.relationships.plan.data.id }}
-                     
-        - name: Update PR
-          uses: actions/github-script@v6
-          id: plan-comment
-          with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            script: |
-             // 1. Retrieve existing bot comments for the PR
-             const { data: comments } = await github.rest.issues.listComments({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-             });
+            go-version: '1.20'
+          working-directory: tests
+          run: go mod tidy && go test -v -timeout 30m
+          env:
+            ATLAS_ORG_ID: ${{ vars.ATLAS_ORG_ID }}
+            ATLAS_PROJECT_NAME: ${{ vars.ATLAS_PROJECT_NAME }}
+            ATLAS_CLUSTER_NAME: ${{ vars.ATLAS_CLUSTER_NAME }}
+            ATLAS_API_PUBLIC_KEY: ${{ secrets.ATLAS_API_PUBLIC_KEY }}
+            ATLAS_API_PRIVATE_KEY: ${{ secrets.ATLAS_API_PRIVATE_KEY }}
+            ATLAS_CLUSTER_PROVIDER_NAME: ${{ vars.ATLAS_CLUSTER_PROVIDER_NAME }}
+            ATLAS_CLUSTER_BACKING_PROVIDER: ${{ vars.ATLAS_CLUSTER_BACKING_PROVIDER }}
+            ATLAS_CLUSTER_REGION: ${{ vars.ATLAS_CLUSTER_REGION }}
+            ATLAS_CLUSTER_VERSION: ${{ vars.ATLAS_CLUSTER_VERSION }}
+            ATLAS_CLUSTER_SIZE_NAME: ${{ vars.ATLAS_CLUSTER_SIZE_NAME }}
+            MONGO_DATABASE_NAME: ${{ vars.MONGO_DATABASE_NAME }}
+            MONGO_DATABASE_ADMIN_USER: ${{ vars.MONGO_DATABASE_ADMIN_USER }}
+            MONGO_DATABASE_ADMIN_PASSWORD: ${{ secrets.MONGO_DATABASE_ADMIN_PASSWORD }}
 
-             const botComment = comments.find(comment => {
-                return comment.user.type === 'Bot' && comment.body.includes('Terraform Cloud Plan Output')
-             });
-
-             const output = `#### Terraform Cloud Plan Output
-             \`\`\`
-             Plan: ${{ steps.plan-output.outputs.add }} to add, ${{ steps.plan-output.outputs.change }} to change, ${{ steps.plan-output.outputs.destroy }} to destroy.
-             \`\`\`
-             [Terraform Cloud Plan](${{ steps.plan-run.outputs.run_link }})
-             `;
-             
-             // 3. Delete previous comment so PR timeline makes sense
-             if (botComment) {
-                github.rest.issues.deleteComment({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    comment_id: botComment.id,
-                });
-             }
-
-             github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: output
-             });
+#        - uses: hashicorp/setup-terraform@v2
+#          with:
+#            terraform_version: 1.5.0
+#            terraform_wrapper: false
+#
+#        - name: Upload Configuration
+#          uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
+#          id: plan-upload
+#          with:
+#            workspace: ${{ env.TF_WORKSPACE }}
+#            directory: ${{ env.CONFIG_DIRECTORY }}
+#            speculative: true
+#
+#        - name: Create Plan Run
+#          uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
+#          id: plan-run
+#          with:
+#            workspace: ${{ env.TF_WORKSPACE }}
+#            configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
+#            plan_only: true
+#
+#        - name: Get Plan Output
+#          uses: hashicorp/tfc-workflows-github/actions/plan-output@v1.0.0
+#          id: plan-output
+#          with:
+#            plan: ${{ fromJSON(steps.plan-run.outputs.payload).data.relationships.plan.data.id }}
+#
+#        - name: Update PR
+#          uses: actions/github-script@v6
+#          id: plan-comment
+#          with:
+#            github-token: ${{ secrets.GITHUB_TOKEN }}
+#            script: |
+#             // 1. Retrieve existing bot comments for the PR
+#             const { data: comments } = await github.rest.issues.listComments({
+#                owner: context.repo.owner,
+#                repo: context.repo.repo,
+#                issue_number: context.issue.number,
+#             });
+#
+#             const botComment = comments.find(comment => {
+#                return comment.user.type === 'Bot' && comment.body.includes('Terraform Cloud Plan Output')
+#             });
+#
+#             const output = `#### Terraform Cloud Plan Output
+#             \`\`\`
+#             Plan: ${{ steps.plan-output.outputs.add }} to add, ${{ steps.plan-output.outputs.change }} to change, ${{ steps.plan-output.outputs.destroy }} to destroy.
+#             \`\`\`
+#             [Terraform Cloud Plan](${{ steps.plan-run.outputs.run_link }})
+#             `;
+#
+#             // 3. Delete previous comment so PR timeline makes sense
+#             if (botComment) {
+#                github.rest.issues.deleteComment({
+#                    owner: context.repo.owner,
+#                    repo: context.repo.repo,
+#                    comment_id: botComment.id,
+#                });
+#             }
+#
+#             github.rest.issues.createComment({
+#                issue_number: context.issue.number,
+#                owner: context.repo.owner,
+#                repo: context.repo.repo,
+#                body: output
+#             });
