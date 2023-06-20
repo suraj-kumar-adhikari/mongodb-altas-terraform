@@ -24,18 +24,18 @@ type TerraformVariables struct {
 
 func GetTerraformVariables() TerraformVariables {
 	return TerraformVariables{
-		AtlasOrgId:                  os.Getenv("atlas_org_id"),
-		AtlasProjectName:            os.Getenv("atlas_project_name"),
-		AtlasClusterName:            os.Getenv("atlas_cluster_name"),
-		AtlasApiPublicKey:           os.Getenv("atlas_api_public_key"),
-		AtlasApiPrivateKey:          os.Getenv("atlas_api_private_key"),
-		AtlasClusterProviderName:    os.Getenv("atlas_cluster_provider_name"),
-		AtlasClusterBackingProvider: os.Getenv("atlas_cluster_backing_provider"),
-		AtlasClusterRegion:          os.Getenv("atlas_cluster_region"),
-		AtlasClusterVersion:         os.Getenv("atlas_cluster_version"),
-		AtlasClusterSizeName:        os.Getenv("atlas_cluster_size_name"),
-		MongoDatabaseName:           os.Getenv("mongo_database_name"),
-		MongoDatabaseAdminUser:      os.Getenv("mongo_database_admin_user"),
-		MongoDatabaseAdminPassword:  os.Getenv("mongo_database_admin_password"),
+		AtlasOrgId:                  os.Getenv("ATLAS_ORG_ID"),
+		AtlasProjectName:            os.Getenv("ATLAS_PROJECT_NAME"),
+		AtlasClusterName:            os.Getenv("ATLAS_CLUSTER_NAME"),
+		AtlasApiPublicKey:           os.Getenv("ATLAS_API_PUBLIC_KEY"),
+		AtlasApiPrivateKey:          os.Getenv("ATLAS_API_PRIVATE_KEY"),
+		AtlasClusterProviderName:    os.Getenv("ATLAS_CLUSTER_PROVIDER_NAME"),
+		AtlasClusterBackingProvider: os.Getenv("ATLAS_CLUSTER_BACKING_PROVIDER"),
+		AtlasClusterRegion:          os.Getenv("ATLAS_CLUSTER_REGION"),
+		AtlasClusterVersion:         os.Getenv("ATLAS_CLUSTER_VERSION"),
+		AtlasClusterSizeName:        os.Getenv("ATLAS_CLUSTER_SIZE_NAME"),
+		MongoDatabaseName:           os.Getenv("MONGO_DATABASE_NAME"),
+		MongoDatabaseAdminUser:      os.Getenv("MONGO_DATABASE_ADMIN_USER"),
+		MongoDatabaseAdminPassword:  os.Getenv("MONGO_DATABASE_ADMIN_PASSWORD"),
 	}
 }
