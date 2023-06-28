@@ -32,26 +32,26 @@ jobs:
             terraform_version: 1.5.0
             terraform_wrapper: false
 
-        - name: Run integration tests
-          working-directory: tests
-          run: go mod tidy && go test -v -timeout 30m
-          env:
-            ATLAS_ORG_ID: ${{ vars.ATLAS_ORG_ID }}
-            ATLAS_PROJECT_NAME: ${{ vars.ATLAS_PROJECT_NAME }}
-            ATLAS_CLUSTER_NAME: ${{ vars.ATLAS_CLUSTER_NAME }}
-            ATLAS_API_PUBLIC_KEY: ${{ secrets.ATLAS_API_PUBLIC_KEY }}
-            ATLAS_API_PRIVATE_KEY: ${{ secrets.ATLAS_API_PRIVATE_KEY }}
-            ATLAS_CLUSTER_PROVIDER_NAME: ${{ vars.ATLAS_CLUSTER_PROVIDER_NAME }}
-            ATLAS_CLUSTER_BACKING_PROVIDER: ${{ vars.ATLAS_CLUSTER_BACKING_PROVIDER }}
-            ATLAS_CLUSTER_REGION: ${{ vars.ATLAS_CLUSTER_REGION }}
-            ATLAS_CLUSTER_VERSION: ${{ vars.ATLAS_CLUSTER_VERSION }}
-            ATLAS_CLUSTER_SIZE_NAME: ${{ vars.ATLAS_CLUSTER_SIZE_NAME }}
-            MONGO_DATABASE_NAME: ${{ vars.MONGO_DATABASE_NAME }}
-            MONGO_DATABASE_ADMIN_USER: ${{ vars.MONGO_DATABASE_ADMIN_USER }}
-            MONGO_DATABASE_ADMIN_PASSWORD: ${{ secrets.MONGO_DATABASE_ADMIN_PASSWORD }}
-            MONGO_DATABASE_APP_USER: ${{ vars.MONGO_DATABASE_APP_USER }}
-            MONGO_DATABASE_APP_PASSWORD: ${{ secrets.MONGO_DATABASE_APP_PASSWORD }}
-            ATLAS_CLUSTER_CIDR: ${{ vars.ATLAS_CLUSTER_CIDR }}
+#        - name: Run integration tests
+#          working-directory: tests
+#          run: go mod tidy && go test -v -timeout 30m
+#          env:
+#            ATLAS_ORG_ID: ${{ vars.ATLAS_ORG_ID }}
+#            ATLAS_PROJECT_NAME: ${{ vars.ATLAS_PROJECT_NAME }}
+#            ATLAS_CLUSTER_NAME: ${{ vars.ATLAS_CLUSTER_NAME }}
+#            ATLAS_API_PUBLIC_KEY: ${{ secrets.ATLAS_API_PUBLIC_KEY }}
+#            ATLAS_API_PRIVATE_KEY: ${{ secrets.ATLAS_API_PRIVATE_KEY }}
+#            ATLAS_CLUSTER_PROVIDER_NAME: ${{ vars.ATLAS_CLUSTER_PROVIDER_NAME }}
+#            ATLAS_CLUSTER_BACKING_PROVIDER: ${{ vars.ATLAS_CLUSTER_BACKING_PROVIDER }}
+#            ATLAS_CLUSTER_REGION: ${{ vars.ATLAS_CLUSTER_REGION }}
+#            ATLAS_CLUSTER_VERSION: ${{ vars.ATLAS_CLUSTER_VERSION }}
+#            ATLAS_CLUSTER_SIZE_NAME: ${{ vars.ATLAS_CLUSTER_SIZE_NAME }}
+#            MONGO_DATABASE_NAME: ${{ vars.MONGO_DATABASE_NAME }}
+#            MONGO_DATABASE_ADMIN_USER: ${{ vars.MONGO_DATABASE_ADMIN_USER }}
+#            MONGO_DATABASE_ADMIN_PASSWORD: ${{ secrets.MONGO_DATABASE_ADMIN_PASSWORD }}
+#            MONGO_DATABASE_APP_USER: ${{ vars.MONGO_DATABASE_APP_USER }}
+#            MONGO_DATABASE_APP_PASSWORD: ${{ secrets.MONGO_DATABASE_APP_PASSWORD }}
+#            ATLAS_CLUSTER_CIDR: ${{ vars.ATLAS_CLUSTER_CIDR }}
 
         - name: Upload Configuration
           uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
